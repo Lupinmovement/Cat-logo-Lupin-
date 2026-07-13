@@ -1,173 +1,594 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LUPIN Collection</title>
+  <title>LUPIN | Movement Wear</title>
+  <meta
+    name="description"
+    content="Explore a coleção LUPIN Movement Wear. Todo movimento importa."
+  >
 
-<style>
+  <style>
+    :root {
+      --fundo: #f5f2ec;
+      --card: #ffffff;
+      --texto: #171717;
+      --suave: #686868;
+      --linha: #ded8ce;
+      --destaque: #87735e;
+      --verde: #173f3d;
+      --raio: 22px;
+    }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body{
+    html {
+      scroll-behavior: smooth;
+    }
 
-background:#f7f6f3;
-color:#222;
+    body {
+      background: var(--fundo);
+      color: var(--texto);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.5;
+    }
 
-}
+    a {
+      color: inherit;
+    }
 
-header{
+    .container {
+      width: min(100% - 32px, 1100px);
+      margin: 0 auto;
+    }
 
-padding:60px 25px 40px;
-text-align:center;
+    /* TOPO */
 
-}
+    .topo {
+      padding: 28px 0 16px;
+    }
 
-.logo{
+    .marca {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-width:90px;
-height:90px;
-border-radius:50%;
-margin:auto;
-margin-bottom:18px;
-overflow:hidden;
+    .marca-nome {
+      font-size: 25px;
+      font-weight: 400;
+      letter-spacing: 6px;
+    }
 
-}
+    .marca-subtitulo {
+      margin-top: 4px;
+      color: var(--suave);
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
 
-.logo img{
+    .icone-lp {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--linha);
+      border-radius: 50%;
+      font-size: 19px;
+      font-weight: 300;
+      letter-spacing: -3px;
+    }
 
-width:100%;
-height:100%;
-object-fit:cover;
+    /* CAPA */
 
-}
+    .hero {
+      margin-top: 16px;
+      min-height: 520px;
+      padding: 36px 28px;
+      border-radius: 30px;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.08),
+          rgba(0, 0, 0, 0.60)
+        ),
+        url("capa.jpg") center/cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+      color: white;
+      overflow: hidden;
+    }
 
-h1{
+    .hero-conteudo {
+      max-width: 520px;
+    }
 
-font-size:34px;
-font-weight:300;
-letter-spacing:2px;
+    .hero-etiqueta {
+      margin-bottom: 14px;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
 
-}
+    .hero h1 {
+      font-size: clamp(38px, 10vw, 66px);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -2px;
+    }
 
-p{
+    .hero p {
+      max-width: 420px;
+      margin-top: 16px;
+      color: rgba(255,255,255,.86);
+      font-size: 16px;
+    }
 
-margin-top:12px;
-font-size:15px;
-color:#666;
+    .botao-principal {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 24px;
+      padding: 15px 24px;
+      border-radius: 999px;
+      background: white;
+      color: black;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
 
-}
+    /* SEÇÕES */
 
-.botao{
+    .secao {
+      padding: 62px 0 8px;
+    }
 
-display:inline-block;
-margin-top:25px;
-padding:14px 32px;
-border-radius:30px;
-background:black;
-color:white;
-text-decoration:none;
-font-weight:500;
+    .secao-cabecalho {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
 
-}
+    .secao-etiqueta {
+      color: var(--destaque);
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
 
-section{
+    .secao h2 {
+      margin-top: 7px;
+      font-size: 30px;
+      font-weight: 400;
+      letter-spacing: -1px;
+    }
 
-padding:20px;
+    .secao-descricao {
+      max-width: 330px;
+      color: var(--suave);
+      font-size: 14px;
+    }
 
-}
+    /* FILTROS */
 
-h2{
+    .filtros {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      padding-bottom: 5px;
+      overflow-x: auto;
+    }
 
-font-size:22px;
-margin-bottom:20px;
+    .filtro {
+      border: 1px solid var(--linha);
+      border-radius: 999px;
+      background: transparent;
+      padding: 10px 16px;
+      white-space: nowrap;
+      cursor: pointer;
+      font-size: 13px;
+    }
 
-}
+    .filtro.ativo {
+      background: var(--texto);
+      border-color: var(--texto);
+      color: white;
+    }
 
-.grid{
+    /* PRODUTOS */
 
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:18px;
+    .produtos {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
 
-}
+    .produto {
+      background: var(--card);
+      border-radius: var(--raio);
+      overflow: hidden;
+      box-shadow: 0 12px 34px rgba(0,0,0,.06);
+    }
 
-.card{
+    .produto-imagem {
+      aspect-ratio: 4 / 5;
+      background: #dedbd5;
+      overflow: hidden;
+    }
 
-background:white;
-border-radius:22px;
-overflow:hidden;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
+    .produto-imagem img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
 
-}
+    .produto-info {
+      padding: 17px;
+    }
 
-.card img{
+    .produto-categoria {
+      color: var(--suave);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
 
-width:100%;
+    .produto-nome {
+      margin-top: 6px;
+      font-size: 17px;
+      font-weight: 500;
+    }
 
-display:block;
+    .produto-preco {
+      margin-top: 5px;
+      font-size: 16px;
+    }
 
-}
+    .produto-descricao {
+      margin-top: 10px;
+      color: var(--suave);
+      font-size: 13px;
+    }
 
-.info{
+    .produto-botao {
+      display: flex;
+      justify-content: center;
+      margin-top: 15px;
+      padding: 12px;
+      border: 1px solid var(--texto);
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+    }
 
-padding:18px;
+    /* GUIA */
 
-}
+    .guia {
+      margin: 62px 0 0;
+      padding: 34px 26px;
+      border-radius: 28px;
+      background: var(--verde);
+      color: white;
+    }
 
-.nome{
+    .guia h2 {
+      font-size: 27px;
+      font-weight: 400;
+    }
 
-font-size:18px;
-font-weight:600;
+    .guia p {
+      margin-top: 10px;
+      color: rgba(255,255,255,.72);
+      font-size: 14px;
+    }
 
-}
+    .guia-tamanhos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 24px;
+    }
 
-.preco{
+    .tamanho {
+      padding: 16px 8px;
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 16px;
+      text-align: center;
+    }
 
-margin-top:8px;
-font-size:22px;
-font-weight:700;
+    .tamanho strong {
+      display: block;
+      font-size: 18px;
+    }
 
-}
+    .tamanho span {
+      font-size: 11px;
+      color: rgba(255,255,255,.68);
+    }
 
-</style>
+    /* RODAPÉ */
 
+    footer {
+      padding: 52px 0 110px;
+      text-align: center;
+    }
+
+    footer strong {
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: 5px;
+    }
+
+    footer p {
+      margin-top: 8px;
+      color: var(--suave);
+      font-size: 13px;
+    }
+
+    .whatsapp-fixo {
+      position: fixed;
+      z-index: 10;
+      right: 18px;
+      bottom: 18px;
+      left: 18px;
+      display: flex;
+      justify-content: center;
+      padding: 16px;
+      border-radius: 999px;
+      background: #111;
+      color: white;
+      text-decoration: none;
+      box-shadow: 0 12px 34px rgba(0,0,0,.24);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 620px) {
+      .hero {
+        min-height: 490px;
+      }
+
+      .produtos {
+        grid-template-columns: 1fr;
+      }
+
+      .secao-cabecalho {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
+  <header class="topo">
+    <div class="container marca">
+      <div>
+        <div class="marca-nome">LUPIN</div>
+        <div class="marca-subtitulo">Movement Wear</div>
+      </div>
 
-<div class="logo">
+      <div class="icone-lp">lp</div>
+    </div>
+  </header>
 
-<img src="logo.png">
+  <main class="container">
 
-</div>
+    <section class="hero">
+      <div class="hero-conteudo">
+        <div class="hero-etiqueta">Explore a coleção</div>
 
-<h1>LUPIN</h1>
+        <h1>Todo movimento importa.</h1>
 
-<p>Todo movimento importa.</p>
+        <p>
+          Peças criadas para acompanhar sua rotina com conforto,
+          liberdade e personalidade.
+        </p>
 
-<a class="botao" href="#">Comprar pelo WhatsApp</a>
+        <a class="botao-principal" href="#colecao">
+          Conhecer a coleção
+        </a>
+      </div>
+    </section>
 
-</header>
+    <section class="secao" id="colecao">
+      <div class="secao-cabecalho">
+        <div>
+          <div class="secao-etiqueta">LUPIN Collection</div>
+          <h2>Peças disponíveis</h2>
+        </div>
 
-<section>
+        <p class="secao-descricao">
+          Escolha sua peça e fale diretamente com nossa equipe pelo WhatsApp.
+        </p>
+      </div>
 
-<h2>Nova Coleção</h2>
+      <div class="filtros">
+        <button class="filtro ativo" data-filtro="todos">Todos</button>
+        <button class="filtro" data-filtro="macaquinhos">Macaquinhos</button>
+        <button class="filtro" data-filtro="conjuntos">Conjuntos</button>
+      </div>
 
-<div class="grid">
+      <div class="produtos">
 
-</div>
+        <!-- PRODUTO 1 -->
+        <article class="produto" data-categoria="macaquinhos">
+          <div class="produto-imagem">
+            <img src="macaquinho-marinho.jpg" alt="Macaquinho Marinho">
+          </div>
 
-</section>
+          <div class="produto-info">
+            <div class="produto-categoria">Macaquinhos</div>
+            <div class="produto-nome">Macaquinho Marinho</div>
+            <div class="produto-preco">R$ 139,00</div>
+
+            <p class="produto-descricao">
+              Modelagem ajustada, textura canelada e costas cruzadas.
+            </p>
+
+            <a
+              class="produto-botao"
+              target="_blank"
+              href="https://wa.me/5561999920084?text=Olá!%20Tenho%20interesse%20no%20Macaquinho%20Marinho."
+            >
+              Comprar pelo WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUTO 2 -->
+        <article class="produto" data-categoria="macaquinhos">
+          <div class="produto-imagem">
+            <img src="macaquinho-lupin.jpg" alt="Macaquinho Lupin">
+          </div>
+
+          <div class="produto-info">
+            <div class="produto-categoria">Macaquinhos</div>
+            <div class="produto-nome">Macaquinho Lupin</div>
+            <div class="produto-preco">R$ 99,00</div>
+
+            <p class="produto-descricao">
+              Disponível nas cores marrom, verde e vermelho.
+            </p>
+
+            <a
+              class="produto-botao"
+              target="_blank"
+              href="https://wa.me/5561999920084?text=Olá!%20Tenho%20interesse%20no%20Macaquinho%20Lupin."
+            >
+              Comprar pelo WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUTO 3 -->
+        <article class="produto" data-categoria="conjuntos">
+          <div class="produto-imagem">
+            <img src="conjunto-merlot.jpg" alt="Conjunto Merlot">
+          </div>
+
+          <div class="produto-info">
+            <div class="produto-categoria">Conjuntos</div>
+            <div class="produto-nome">Conjunto Merlot</div>
+            <div class="produto-preco">R$ 139,90</div>
+
+            <p class="produto-descricao">
+              Conjunto feminino com design esportivo e acabamento sofisticado.
+            </p>
+
+            <a
+              class="produto-botao"
+              target="_blank"
+              href="https://wa.me/5561999920084?text=Olá!%20Tenho%20interesse%20no%20Conjunto%20Merlot."
+            >
+              Comprar pelo WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUTO 4 -->
+        <article class="produto" data-categoria="conjuntos">
+          <div class="produto-imagem">
+            <img src="conjunto-movimento-azul.jpg" alt="Conjunto Movimento Azul">
+          </div>
+
+          <div class="produto-info">
+            <div class="produto-categoria">Conjuntos</div>
+            <div class="produto-nome">Conjunto Movimento Azul</div>
+            <div class="produto-preco">R$ 45,00</div>
+
+            <p class="produto-descricao">
+              Leve, confortável e feito para acompanhar seus movimentos.
+            </p>
+
+            <a
+              class="produto-botao"
+              target="_blank"
+              href="https://wa.me/5561999920084?text=Olá!%20Tenho%20interesse%20no%20Conjunto%20Movimento%20Azul."
+            >
+              Comprar pelo WhatsApp
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="guia">
+      <h2>Guia de tamanhos</h2>
+
+      <p>
+        Consulte a disponibilidade de cada tamanho pelo WhatsApp antes da compra.
+      </p>
+
+      <div class="guia-tamanhos">
+        <div class="tamanho">
+          <strong>P</strong>
+          <span>Pequeno</span>
+        </div>
+
+        <div class="tamanho">
+          <strong>M</strong>
+          <span>Médio</span>
+        </div>
+
+        <div class="tamanho">
+          <strong>G</strong>
+          <span>Grande</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="container">
+    <strong>LUPIN</strong>
+    <p>Movement Wear · Todo movimento importa.</p>
+  </footer>
+
+  <a
+    class="whatsapp-fixo"
+    target="_blank"
+    href="https://wa.me/5561999920084?text=Olá!%20Gostaria%20de%20conhecer%20as%20peças%20disponíveis%20da%20LUPIN."
+  >
+    Comprar pelo WhatsApp
+  </a>
+
+  <script>
+    const botoes = document.querySelectorAll(".filtro");
+    const produtos = document.querySelectorAll(".produto");
+
+    botoes.forEach(botao => {
+      botao.addEventListener("click", () => {
+        botoes.forEach(item => item.classList.remove("ativo"));
+        botao.classList.add("ativo");
+
+        const filtro = botao.dataset.filtro;
+
+        produtos.forEach(produto => {
+          const categoria = produto.dataset.categoria;
+
+          produto.style.display =
+            filtro === "todos" || filtro === categoria
+              ? "block"
+              : "none";
+        });
+      });
+    });
+  </script>
 
 </body>
-
 </html>

@@ -2,9 +2,14 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>LUPIN | Movement Wear</title>
+
   <meta
     name="description"
     content="Explore a coleção LUPIN Movement Wear. Todo movimento importa."
@@ -35,12 +40,22 @@
     body {
       background: var(--fundo);
       color: var(--texto);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
       line-height: 1.5;
     }
 
     a {
       color: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
     }
 
     .container {
@@ -93,13 +108,16 @@
       min-height: 520px;
       padding: 36px 28px;
       border-radius: 30px;
+
       background:
         linear-gradient(
           180deg,
-          rgba(0, 0, 0, 0.08),
-          rgba(0, 0, 0, 0.60)
+          rgba(0, 0, 0, 0.05),
+          rgba(0, 0, 0, 0.64)
         ),
-        url("capa.jpg") center/cover no-repeat;
+        url("https://i.ibb.co/Zz3ZCwjw/2dbbd9d2-44da-4f9e-b781-1481a9568da8.jpg")
+        center / cover no-repeat;
+
       display: flex;
       align-items: flex-end;
       color: white;
@@ -127,7 +145,7 @@
     .hero p {
       max-width: 420px;
       margin-top: 16px;
-      color: rgba(255,255,255,.86);
+      color: rgba(255, 255, 255, 0.86);
       font-size: 16px;
     }
 
@@ -153,7 +171,7 @@
 
     .secao-cabecalho {
       display: flex;
-      align-items: end;
+      align-items: flex-end;
       justify-content: space-between;
       gap: 16px;
       margin-bottom: 24px;
@@ -187,6 +205,11 @@
       margin-bottom: 24px;
       padding-bottom: 5px;
       overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .filtros::-webkit-scrollbar {
+      display: none;
     }
 
     .filtro {
@@ -217,20 +240,47 @@
       background: var(--card);
       border-radius: var(--raio);
       overflow: hidden;
-      box-shadow: 0 12px 34px rgba(0,0,0,.06);
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.06);
     }
 
-    .produto-imagem {
-      aspect-ratio: 4 / 5;
+    /* GALERIA DESLIZÁVEL */
+
+    .produto-galeria {
+      position: relative;
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
       background: #dedbd5;
-      overflow: hidden;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
     }
 
-    .produto-imagem img {
+    .produto-galeria::-webkit-scrollbar {
+      display: none;
+    }
+
+    .produto-galeria img {
       width: 100%;
-      height: 100%;
+      flex: 0 0 100%;
+      aspect-ratio: 4 / 5;
       display: block;
       object-fit: cover;
+      scroll-snap-align: start;
+    }
+
+    .galeria-aviso {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.55);
+      color: white;
+      font-size: 10px;
+      letter-spacing: 0.5px;
+      pointer-events: none;
+      backdrop-filter: blur(5px);
     }
 
     .produto-info {
@@ -271,6 +321,14 @@
       text-decoration: none;
       font-size: 12px;
       font-weight: 600;
+      transition:
+        background 0.2s ease,
+        color 0.2s ease;
+    }
+
+    .produto-botao:active {
+      background: var(--texto);
+      color: white;
     }
 
     /* GUIA */
@@ -290,7 +348,7 @@
 
     .guia p {
       margin-top: 10px;
-      color: rgba(255,255,255,.72);
+      color: rgba(255, 255, 255, 0.72);
       font-size: 14px;
     }
 
@@ -303,7 +361,7 @@
 
     .tamanho {
       padding: 16px 8px;
-      border: 1px solid rgba(255,255,255,.24);
+      border: 1px solid rgba(255, 255, 255, 0.24);
       border-radius: 16px;
       text-align: center;
     }
@@ -315,7 +373,7 @@
 
     .tamanho span {
       font-size: 11px;
-      color: rgba(255,255,255,.68);
+      color: rgba(255, 255, 255, 0.68);
     }
 
     /* RODAPÉ */
@@ -337,11 +395,13 @@
       font-size: 13px;
     }
 
+    /* BOTÃO FIXO */
+
     .whatsapp-fixo {
       position: fixed;
-      z-index: 10;
+      z-index: 20;
       right: 18px;
-      bottom: 18px;
+      bottom: calc(18px + env(safe-area-inset-bottom));
       left: 18px;
       display: flex;
       justify-content: center;
@@ -350,10 +410,12 @@
       background: #111;
       color: white;
       text-decoration: none;
-      box-shadow: 0 12px 34px rgba(0,0,0,.24);
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.24);
       font-size: 14px;
       font-weight: 700;
     }
+
+    /* CELULAR */
 
     @media (max-width: 620px) {
       .hero {
@@ -365,7 +427,7 @@
       }
 
       .secao-cabecalho {
-        align-items: start;
+        align-items: flex-start;
         flex-direction: column;
       }
     }
@@ -376,64 +438,147 @@
 
   <header class="topo">
     <div class="container marca">
+
       <div>
         <div class="marca-nome">LUPIN</div>
         <div class="marca-subtitulo">Movement Wear</div>
       </div>
 
       <div class="icone-lp">lp</div>
+
     </div>
   </header>
 
   <main class="container">
 
+    <!-- CAPA -->
+
     <section class="hero">
       <div class="hero-conteudo">
-        <div class="hero-etiqueta">Explore a coleção</div>
 
-        <h1>Todo movimento importa.</h1>
+        <div class="hero-etiqueta">
+          Explore a coleção
+        </div>
+
+        <h1>
+          Todo movimento importa.
+        </h1>
 
         <p>
           Peças criadas para acompanhar sua rotina com conforto,
           liberdade e personalidade.
         </p>
 
-        <a class="botao-principal" href="#colecao">
+        <a
+          class="botao-principal"
+          href="#colecao"
+        >
           Conhecer a coleção
         </a>
+
       </div>
     </section>
 
-    <section class="secao" id="colecao">
+    <!-- COLEÇÃO -->
+
+    <section
+      class="secao"
+      id="colecao"
+    >
+
       <div class="secao-cabecalho">
+
         <div>
-          <div class="secao-etiqueta">LUPIN Collection</div>
-          <h2>Peças disponíveis</h2>
+          <div class="secao-etiqueta">
+            LUPIN Collection
+          </div>
+
+          <h2>
+            Peças disponíveis
+          </h2>
         </div>
 
         <p class="secao-descricao">
           Escolha sua peça e fale diretamente com nossa equipe pelo WhatsApp.
         </p>
+
       </div>
 
+      <!-- FILTROS -->
+
       <div class="filtros">
-        <button class="filtro ativo" data-filtro="todos">Todos</button>
-        <button class="filtro" data-filtro="macaquinhos">Macaquinhos</button>
-        <button class="filtro" data-filtro="conjuntos">Conjuntos</button>
+
+        <button
+          class="filtro ativo"
+          data-filtro="todos"
+        >
+          Todos
+        </button>
+
+        <button
+          class="filtro"
+          data-filtro="macaquinhos"
+        >
+          Macaquinhos
+        </button>
+
+        <button
+          class="filtro"
+          data-filtro="conjuntos"
+        >
+          Conjuntos
+        </button>
+
       </div>
 
       <div class="produtos">
 
-        <!-- PRODUTO 1 -->
-        <article class="produto" data-categoria="macaquinhos">
-          <div class="produto-imagem">
-            <img src="macaquinho-marinho.jpg" alt="Macaquinho Marinho">
+        <!-- PRODUTO 1 — MACAQUINHO MARINHO -->
+
+        <article
+          class="produto"
+          data-categoria="macaquinhos"
+        >
+
+          <div class="produto-galeria">
+
+            <img
+              src="https://i.ibb.co/Zz3ZCwjw/2dbbd9d2-44da-4f9e-b781-1481a9568da8.jpg"
+              alt="Macaquinho Marinho de frente"
+              loading="lazy"
+            >
+
+            <img
+              src="https://i.ibb.co/N2bkHNzk/3fdb6382-1dcc-4b06-89df-d1bad6ac7892.jpg"
+              alt="Macaquinho Marinho de costas"
+              loading="lazy"
+            >
+
+            <img
+              src="https://i.ibb.co/8gGBfQPx/1dbb57cd-f274-42f6-b31c-45aa6c1cdc78.jpg"
+              alt="Detalhes do Macaquinho Marinho"
+              loading="lazy"
+            >
+
+            <span class="galeria-aviso">
+              Deslize para ver mais
+            </span>
+
           </div>
 
           <div class="produto-info">
-            <div class="produto-categoria">Macaquinhos</div>
-            <div class="produto-nome">Macaquinho Marinho</div>
-            <div class="produto-preco">R$ 139,00</div>
+
+            <div class="produto-categoria">
+              Macaquinhos
+            </div>
+
+            <div class="produto-nome">
+              Macaquinho Marinho
+            </div>
+
+            <div class="produto-preco">
+              R$ 139,00
+            </div>
 
             <p class="produto-descricao">
               Modelagem ajustada, textura canelada e costas cruzadas.
@@ -442,99 +587,221 @@
             <a
               class="produto-botao"
               target="_blank"
-              href="https://wa.me/5561999920084?text=Olá!%20Tenho%20interesse%20no%20Macaquinho%20Marinho."
+              rel="noopener noreferrer"
+              href="https://wa.me/5561999920084?text=Olá!%20Tenho%20interesse%20no%20Macaquinho%20Marinho%20de%20R%24%20139%2C00."
             >
               Comprar pelo WhatsApp
             </a>
+
           </div>
         </article>
 
-        <!-- PRODUTO 2 -->
-        <article class="produto" data-categoria="macaquinhos">
-          <div class="produto-imagem">
-            <img src="macaquinho-lupin.jpg" alt="Macaquinho Lupin">
+        <!-- PRODUTO 2 — MACAQUINHO LUPIN -->
+
+        <article
+          class="produto"
+          data-categoria="macaquinhos"
+        >
+
+          <div class="produto-galeria">
+
+            <img
+              src="https://i.ibb.co/8nFNQ4B7/6db80d65-d93c-491e-a312-27b76d4903f4.jpg"
+              alt="Macaquinho Lupin de frente"
+              loading="lazy"
+            >
+
+            <img
+              src="https://i.ibb.co/m5XSX4Vv/bcee3149-ef2d-453c-ab8b-cd30e81e4da1.jpg"
+              alt="Macaquinho Lupin de costas"
+              loading="lazy"
+            >
+
+            <img
+              src="https://i.ibb.co/bMq7vMCB/IMG-7694.png"
+              alt="Detalhes do Macaquinho Lupin"
+              loading="lazy"
+            >
+
+            <span class="galeria-aviso">
+              Deslize para ver mais
+            </span>
+
           </div>
 
           <div class="produto-info">
-            <div class="produto-categoria">Macaquinhos</div>
-            <div class="produto-nome">Macaquinho Lupin</div>
-            <div class="produto-preco">R$ 99,00</div>
+
+            <div class="produto-categoria">
+              Macaquinhos
+            </div>
+
+            <div class="produto-nome">
+              Macaquinho Lupin
+            </div>
+
+            <div class="produto-preco">
+              R$ 129,00
+            </div>
 
             <p class="produto-descricao">
-              Disponível nas cores marrom, verde e vermelho.
+              Conforto, liberdade e modelagem pensada para acompanhar seus movimentos.
             </p>
 
             <a
               class="produto-botao"
               target="_blank"
-              href="https://wa.me/5561999920084?text=Olá!%20Tenho%20interesse%20no%20Macaquinho%20Lupin."
+              rel="noopener noreferrer"
+              href="https://wa.me/5561999920084?text=Olá!%20Tenho%20interesse%20no%20Macaquinho%20Lupin%20de%20R%24%20129%2C00."
             >
               Comprar pelo WhatsApp
             </a>
+
           </div>
         </article>
 
-        <!-- PRODUTO 3 -->
-        <article class="produto" data-categoria="conjuntos">
-          <div class="produto-imagem">
-            <img src="conjunto-merlot.jpg" alt="Conjunto Merlot">
+        <!-- PRODUTO 3 — CONJUNTO MERLOT -->
+
+        <article
+          class="produto"
+          data-categoria="conjuntos"
+        >
+
+          <div class="produto-galeria">
+
+            <img
+              src="https://i.ibb.co/Ps860spn/bf9fe511-be2a-4f17-a43f-a053fb4a6d2c.jpg"
+              alt="Conjunto Merlot de frente"
+              loading="lazy"
+            >
+
+            <img
+              src="https://i.ibb.co/v6DhsTfj/ad95b9ef-fef3-4331-9aa2-b6db87c9b2f4.jpg"
+              alt="Conjunto Merlot de costas"
+              loading="lazy"
+            >
+
+            <img
+              src="https://i.ibb.co/NnYWqKWz/40a1c631-d0b3-41e8-a951-9b41189f7ca4.jpg"
+              alt="Detalhes do Conjunto Merlot"
+              loading="lazy"
+            >
+
+            <span class="galeria-aviso">
+              Deslize para ver mais
+            </span>
+
           </div>
 
           <div class="produto-info">
-            <div class="produto-categoria">Conjuntos</div>
-            <div class="produto-nome">Conjunto Merlot</div>
-            <div class="produto-preco">R$ 139,90</div>
+
+            <div class="produto-categoria">
+              Conjuntos
+            </div>
+
+            <div class="produto-nome">
+              Conjunto Merlot
+            </div>
+
+            <div class="produto-preco">
+              R$ 139,00
+            </div>
 
             <p class="produto-descricao">
-              Conjunto feminino com design esportivo e acabamento sofisticado.
+              Design esportivo, modelagem confortável e acabamento sofisticado.
             </p>
 
             <a
               class="produto-botao"
               target="_blank"
-              href="https://wa.me/5561999920084?text=Olá!%20Tenho%20interesse%20no%20Conjunto%20Merlot."
+              rel="noopener noreferrer"
+              href="https://wa.me/5561999920084?text=Olá!%20Tenho%20interesse%20no%20Conjunto%20Merlot%20de%20R%24%20139%2C00."
             >
               Comprar pelo WhatsApp
             </a>
+
           </div>
         </article>
 
-        <!-- PRODUTO 4 -->
-        <article class="produto" data-categoria="conjuntos">
-          <div class="produto-imagem">
-            <img src="conjunto-movimento-azul.jpg" alt="Conjunto Movimento Azul">
+        <!-- PRODUTO 4 — CONJUNTO MOVIMENTO -->
+
+        <article
+          class="produto"
+          data-categoria="conjuntos"
+        >
+
+          <div class="produto-galeria">
+
+            <img
+              src="https://i.ibb.co/Wvzf4qsM/cd8c2e40-d2ca-4448-b1e9-5401e05cf8fb.jpg"
+              alt="Conjunto Movimento de frente"
+              loading="lazy"
+            >
+
+            <img
+              src="https://i.ibb.co/WWndHTD5/4d1e47f3-7896-4d5b-923a-4473deeee2d8.jpg"
+              alt="Conjunto Movimento de costas"
+              loading="lazy"
+            >
+
+            <img
+              src="https://i.ibb.co/Tq2qVxw9/97867620-d5e8-4ff8-975d-57e766d58bf9.jpg"
+              alt="Detalhes do Conjunto Movimento"
+              loading="lazy"
+            >
+
+            <span class="galeria-aviso">
+              Deslize para ver mais
+            </span>
+
           </div>
 
           <div class="produto-info">
-            <div class="produto-categoria">Conjuntos</div>
-            <div class="produto-nome">Conjunto Movimento Azul</div>
-            <div class="produto-preco">R$ 45,00</div>
+
+            <div class="produto-categoria">
+              Conjuntos
+            </div>
+
+            <div class="produto-nome">
+              Conjunto Movimento
+            </div>
+
+            <div class="produto-preco">
+              R$ 45,00
+            </div>
 
             <p class="produto-descricao">
-              Leve, confortável e feito para acompanhar seus movimentos.
+              Leve, confortável e feito para acompanhar sua rotina.
             </p>
 
             <a
               class="produto-botao"
               target="_blank"
-              href="https://wa.me/5561999920084?text=Olá!%20Tenho%20interesse%20no%20Conjunto%20Movimento%20Azul."
+              rel="noopener noreferrer"
+              href="https://wa.me/5561999920084?text=Olá!%20Tenho%20interesse%20no%20Conjunto%20Movimento%20de%20R%24%2045%2C00."
             >
               Comprar pelo WhatsApp
             </a>
+
           </div>
         </article>
 
       </div>
     </section>
 
+    <!-- GUIA DE TAMANHOS -->
+
     <section class="guia">
-      <h2>Guia de tamanhos</h2>
+
+      <h2>
+        Guia de tamanhos
+      </h2>
 
       <p>
         Consulte a disponibilidade de cada tamanho pelo WhatsApp antes da compra.
       </p>
 
       <div class="guia-tamanhos">
+
         <div class="tamanho">
           <strong>P</strong>
           <span>Pequeno</span>
@@ -549,36 +816,54 @@
           <strong>G</strong>
           <span>Grande</span>
         </div>
+
       </div>
     </section>
 
   </main>
 
+  <!-- RODAPÉ -->
+
   <footer class="container">
-    <strong>LUPIN</strong>
-    <p>Movement Wear · Todo movimento importa.</p>
+
+    <strong>
+      LUPIN
+    </strong>
+
+    <p>
+      Movement Wear · Todo movimento importa.
+    </p>
+
   </footer>
+
+  <!-- WHATSAPP FIXO -->
 
   <a
     class="whatsapp-fixo"
     target="_blank"
+    rel="noopener noreferrer"
     href="https://wa.me/5561999920084?text=Olá!%20Gostaria%20de%20conhecer%20as%20peças%20disponíveis%20da%20LUPIN."
   >
     Comprar pelo WhatsApp
   </a>
 
+  <!-- FILTROS -->
+
   <script>
     const botoes = document.querySelectorAll(".filtro");
     const produtos = document.querySelectorAll(".produto");
 
-    botoes.forEach(botao => {
+    botoes.forEach((botao) => {
       botao.addEventListener("click", () => {
-        botoes.forEach(item => item.classList.remove("ativo"));
+        botoes.forEach((item) => {
+          item.classList.remove("ativo");
+        });
+
         botao.classList.add("ativo");
 
         const filtro = botao.dataset.filtro;
 
-        produtos.forEach(produto => {
+        produtos.forEach((produto) => {
           const categoria = produto.dataset.categoria;
 
           produto.style.display =
